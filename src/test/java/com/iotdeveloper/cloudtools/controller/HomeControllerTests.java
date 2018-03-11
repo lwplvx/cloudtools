@@ -1,5 +1,6 @@
 package com.iotdeveloper.cloudtools.controller;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +11,7 @@ import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -36,13 +38,25 @@ public class HomeControllerTests {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
 
     }
+
     @Test
     public void testIndex() throws Exception {
-        mockMvc.perform(get("/")) //8 模拟GET /
+
+        String uri = "/";
+
+//        MvcResult result=mockMvc.perform(get(uri).a
+
+
+        MvcResult result = mockMvc.perform(get(uri)) //8 模拟GET /
                 .andExpect(status().isOk())//9 预期返回状态为200
                 .andExpect(view().name("index"))//10 预期view的名称
-                .andExpect(forwardedUrl("/resources/templates/index.html"))//11 预期页面转向的真正路径
-                .andExpect(model().attribute("msg", null));//12 预期model里的值
+//                .andExpect(forwardedUrl("/resources/templates/index.html"))//11 预期页面转向的真正路径
+//                .andExpect(model().attribute("message", null))//12 预期model里的值
+                .andReturn();
+
+        Object msg=result.getModelAndView().getModel().get("message");
+        Assert.assertNotNull(msg);
+        Assert.assertTrue(msg.toString().length()>5);
 
     }
 

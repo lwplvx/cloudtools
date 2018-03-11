@@ -20,6 +20,8 @@ public class HomeController {
 
     StringBuffer str = new StringBuffer("Hello Spring Boot !");
 
+    //ModelAndView
+
     /**
      * @return
      */
@@ -46,7 +48,9 @@ public class HomeController {
         UDPService.getInstance().createUdpServer(toolsSettings.getUdpPort());
         TCPService.getInstance().createTCPService(toolsSettings.getTcpPort());
 
+        //return "index";
         ModelAndView result = new ModelAndView("index");
+        result.addObject("message",str.toString());
         return result;// View("projects/index", "projectList", projectList);
     }
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class WsController {
 
+
     @RequestMapping("/welcome")
     @SendTo("/topic/getResponse")
     public WsResponse say(WsMessage message)

@@ -20,8 +20,7 @@ public class TcpController {
      * @return
      */
     @RequestMapping(value = "/tcp", method = RequestMethod.POST)
-    public Object post()
-    {
+    public Object post() {
 
         return "post";
     }
@@ -30,8 +29,7 @@ public class TcpController {
      * @return
      */
     @RequestMapping(value = "/tcp", method = RequestMethod.GET)
-    public Object get()
-    {
+    public Object get() {
         return "post";
     }
 
@@ -40,20 +38,19 @@ public class TcpController {
      * @return
      */
     @RequestMapping(value = "/tcp/{port}", method = RequestMethod.GET)
-    public Object get(@PathVariable("port") int port)
-    {
-        return "post "+ port                ;
+    public Object get(@PathVariable("port") int port) {
+        return "post " + port;
     }
 
 
     @RequestMapping("/send")
-    String send() {
+    public String send() {
 
         UdpSocket udpSocket = UDPService.getInstance().findUdpSocket(toolsSettings.getUdpPort());
 
         if (udpSocket != null) {
-            udpSocket.send("23.97.75.9",9001,"hi,iot-developer");
-            udpSocket.send("127.0.0.1",49551,"hi,iot-developer");
+            udpSocket.send("23.97.75.9", 9001, "hi,iot-developer");
+            udpSocket.send("127.0.0.1", 49551, "hi,iot-developer");
 
             return "发送成功";
         }

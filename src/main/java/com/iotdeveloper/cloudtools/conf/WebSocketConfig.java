@@ -1,4 +1,4 @@
-package com.iotdeveloper.cloudtools.config;
+package com.iotdeveloper.cloudtools.conf;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
