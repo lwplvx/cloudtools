@@ -1,5 +1,7 @@
 package com.iotdeveloper.cloudtools.api;
 
+import com.iotdeveloper.cloudtools.model.Response.AbstractJsonResponse;
+import com.iotdeveloper.cloudtools.model.Response.ErrorResponse;
 import com.iotdeveloper.cloudtools.model.UdpSocket;
 import com.iotdeveloper.cloudtools.service.UDPService;
 import com.iotdeveloper.cloudtools.setting.ToolsSettings;
@@ -20,17 +22,19 @@ public class TcpController {
      * @return
      */
     @RequestMapping(value = "/tcp", method = RequestMethod.POST)
-    public Object post() {
+    public AbstractJsonResponse post() {
 
-        return "post";
+        return new ErrorResponse("post 未实现");
     }
 
     /**
      * @return
      */
     @RequestMapping(value = "/tcp", method = RequestMethod.GET)
-    public Object get() {
-        return "post";
+    public AbstractJsonResponse get() {
+
+
+        return new ErrorResponse("get 未实现");
     }
 
     /**
@@ -38,8 +42,10 @@ public class TcpController {
      * @return
      */
     @RequestMapping(value = "/tcp/{port}", method = RequestMethod.GET)
-    public Object get(@PathVariable("port") int port) {
-        return "post " + port;
+    public AbstractJsonResponse get(@PathVariable("port") int port) {
+
+
+        return new ErrorResponse("get tcp/{port} 未实现");
     }
 
 
