@@ -48,7 +48,7 @@ public class UdpControllerTest {
     }
 
     @Test
-    public void testGetPort() throws Exception{
+    public void testGetByPort() throws Exception{
         int port=9001;
         mockMvc.perform(get("/udp/"+port)) //   GET udp/port
                 .andExpect(status().isOk()) //  预期返回状态为200

@@ -2,6 +2,7 @@ package com.iotdeveloper.cloudtools.api;
 
 import com.iotdeveloper.cloudtools.model.Response.AbstractJsonResponse;
 import com.iotdeveloper.cloudtools.model.Response.ErrorResponse;
+import com.iotdeveloper.cloudtools.model.Response.UnrealizedResponse;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,7 +31,7 @@ public class UdpController
     public AbstractJsonResponse get() {
 
 
-        return new ErrorResponse("get 未实现");
+        return  new UnrealizedResponse("udp get");
     }
 
     /**
@@ -38,10 +39,10 @@ public class UdpController
      * @return
      */
     @RequestMapping(value = "/udp/{port}", method = RequestMethod.GET)
-    public AbstractJsonResponse get(@PathVariable("port") int port) {
+    public AbstractJsonResponse getByPort(@PathVariable("port") int port) {
 
 
-        return new ErrorResponse("get tcp/{port} 未实现");
+        return  new UnrealizedResponse("tcp/{port} get");
     }
 
 

@@ -14,8 +14,9 @@ function setConnected(connected) {
 
 
 function connect() {
-    var socket = new SockJS('/endpointLwp');
+    p2p();
 
+    var socket = new SockJS('/endpointLwp');
     stompClient = Stomp.over(socket);
 
     stompClient.connect({}, function (frame) {
@@ -51,4 +52,42 @@ function showResponse(message) {
     var response = $("#response");
     response.html(message);
 
+}
+
+
+function p2p() {
+    var sock = new SockJS("/endpointChat");
+    var stomp = Stomp.over(sock);
+    stomp.connect("guest", "guest", function (frame) {
+        stomp.subscribe("/user/queue/notifications", handleNotification)
+    })
+    var interval = setInterval(function () {
+        if (sock.closed) {
+
+        }
+        stomp.send("/chat", "hello " + (new Date().getTime()));
+    }, 5000);
+
+    sock.onopen = function () {
+        console.log('open');
+        sock.send('test');
+    };
+
+    sock.onmessage = function (e) {
+        console.log('message', e.data);
+        //  sock.close();
+    };
+
+    sock.onclose = function () {
+        console.log('close');
+        clearInterval(interval);
+    };
+
+    setTimeout(function () {
+        sock.close();
+    }, 30000)
+}
+
+function handleNotification(message) {
+    console.log(message, " handleNotification")
 }

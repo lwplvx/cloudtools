@@ -27,7 +27,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringRunner.class)
 @WebAppConfiguration("src/main/resources")
 @SpringBootTest
-public class TcpControllerTests {
+public class TcpControllerTest {
 
     private MockMvc mockMvc;//2 模拟MVC对象
     @Autowired
@@ -76,7 +76,7 @@ public class TcpControllerTests {
     }
 
     @Test
-    public void testGetPort() throws Exception {
+    public void testGetByPort() throws Exception {
         mockMvc.perform(get("/tcp/8500")) //   GET tcp
                 .andExpect(status().isOk()) //  预期返回状态为200
                 .andExpect(content().contentType("text/plain;charset=UTF-8"));
